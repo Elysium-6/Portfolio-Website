@@ -5,14 +5,29 @@ import TabButton from "./TabButton";
 
 const TAB_DATA = [
   {
-    title: "Skills",
-    id: "skills",
+    title: "Programming Languages",
+    id: "prg_lngs",
     content: (
       <ul className="list-disc pl-2">
-        <li>Node.js</li>
-        <li>Express</li>
-        <li>PostgreSQL</li>
-        <li>Sequelize</li>
+        <li>Python</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>C/C++</li>
+        <li>C#</li>
+        <li>SQL</li>
+        <li>ABAP</li>
+      </ul>
+    ),
+  },
+  {
+    title: "Frameworks",
+    id: "frameworks",
+    content: (
+      <ul className="list-disc pl-2">
+        <li>React JS</li>
+        <li>Firebase/Cloud Firestore</li>
+        <li>Springboot</li>
+        <li>Selenium</li>
         <li>JavaScript</li>
         <li>React</li>
       </ul>
@@ -23,8 +38,9 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Fullstack Academy of Code</li>
-        <li>University of California, Santa Cruz</li>
+        <li>University of Hong Kong, Hong Kong</li>
+        <li>Yonsei Unviversity, Seoul (Exchange)</li>
+        <li>Peking University, Beijing (Exchange)</li>
       </ul>
     ),
   },
@@ -41,7 +57,7 @@ const TAB_DATA = [
 ];
 
 const AboutSection = () => {
-  const [tab, setTab] = useState("skills");
+  const [tab, setTab] = useState("prg_lngs");
   const [isPending, startTransition] = useTransition();
 
   const handleTabChange = (id) => {
@@ -51,26 +67,28 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white" id="about">
+    <section className="text-white bg-transparent" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image src="/images/about-image.png" width={500} height={500} alt="About me image"/>
+        <Image src="/images/profile_photo.jpg" width={500} height={500} alt="About me image"/>
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
-            I am a full stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-            Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am a team player and
-            I am excited to work with others to create amazing applications.
+            I am currently a Year 3 student at the University of Hong Kong studying Computer Science with a Minor in Finance. I am a software developer and have experience in a myriad of fields including fullstack web/mobile app development, machine learning, AI agents and game development. My ultimate desire is to create things that have a positive impact on people's lives.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
-              selectTab={() => handleTabChange("skills")}
-              active={tab === "skills"}
+              selectTab={() => handleTabChange("prg_lngs")}
+              active={tab === "prg_lngs"}
             >
               {" "}
-              Skills{" "}
+              Programming Languages{" "}
+            </TabButton>
+            <TabButton
+              selectTab={() => handleTabChange("frameworks")}
+              active={tab === "frameworks"}
+            >
+              {" "}
+              Frameworks{" "}
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("education")}

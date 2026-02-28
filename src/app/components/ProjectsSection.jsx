@@ -4,58 +4,69 @@ import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 
+const categories = ["All", "Web", "Mobile", "UI/UX", "Fullstack", "Prompt Engineering", "Machine Learning", "Computer Vision", "Game", "AI Agents", "Unity", "Unreal Engine"];
+
 const projectsData = [
   {
     id: 1,
     title: "React Portfolio Website",
-    description: "Project 1 description",
+    description: "My portfolio website built with React and Tailwind CSS.",
     image: "/images/projects/1.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Web", "UI/UX"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 2,
-    title: "Potography Portfolio Website",
-    description: "Project 2 description",
+    title: "ScamSensei",
+    description: "A scam detection and prevention application built with React and Firebase. Powered by the DeepSeek API, it analyses user responses to better train them to identify scams and phishing attempts.",
     image: "/images/projects/2.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Mobile", "UI/UX", "Prompt Engineering"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 3,
     title: "E-commerce Application",
-    description: "Project 3 description",
+    description: "TBA",
     image: "/images/projects/3.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Mobile", "UI/UX", "Fullstack"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 4,
-    title: "Food Ordering Application",
-    description: "Project 4 description",
+    title: "Career Guru",
+    description: "An application that helps users ages 16-20 navigate their career paths by providing personalized advice and resources.",
     image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
+    tag: ["All", "Mobile", "UI/UX", "Prompt Engineering"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 5,
-    title: "React Firebase Template",
-    description: "Authentication and CRUD operations",
+    title: "Euterpe",
+    description: "A music recommender system that uses machine learning algorithms to analyze user preferences and suggest new music based on their listening history.",
     image: "/images/projects/5.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Machine Learning"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 6,
-    title: "Full-stack Roadmap",
-    description: "Project 5 description",
+    title: "Puzzle Bots",
+    description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
     image: "/images/projects/6.png",
-    tag: ["All", "Web"],
+    tag: ["All", "AI Agents", "Computer Vision", "Machine Learning", "UI/UX"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 7,
+    title: "Kingdoms of Chess",
+    description: "A reimagination of the classic game of chess. Made in Unity",
+    image: "/images/projects/7.png",
+    tag: ["All", "Game", "Unity", "UI/UX", "Machine Learning"],
     gitUrl: "/",
     previewUrl: "/",
   },
@@ -92,13 +103,55 @@ const ProjectsSection = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
+          name="AI Agents"
+          isSelected={tag === "AI Agents"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Fullstack"
+          isSelected={tag === "Fullstack"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Game"
+          isSelected={tag === "Game"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Machine Learning"
+          isSelected={tag === "Machine Learning"}
         />
         <ProjectTag
           onClick={handleTagChange}
           name="Mobile"
           isSelected={tag === "Mobile"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Prompt Engineering"
+          isSelected={tag === "Prompt Engineering"}
+        />
+      </div>
+      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+        <ProjectTag
+          onClick={handleTagChange}
+          name="UI/UX"
+          isSelected={tag === "UI/UX"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Unity"
+          isSelected={tag === "Unity"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Unreal Engine"
+          isSelected={tag === "Unreal Engine"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Web"
+          isSelected={tag === "Web"}
         />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
