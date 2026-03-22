@@ -4,6 +4,7 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Novatrix from "../ui/novatrix-background";
 
 const HeroSection = () => {
   const sectionRef = useRef(null);
@@ -11,6 +12,7 @@ const HeroSection = () => {
     target: sectionRef,
     offset: ["start end", "end start"], // animation runs while section enters/exits viewport
   });
+  const NOVATRIX_COLOR = [1, 1, 1];
 
   // Map scroll progress to vertical movement of the background
   // Start position: -20% (slightly above), end position: 20% (slightly below)
@@ -23,12 +25,18 @@ const HeroSection = () => {
     >
       {/* Parallax Background Image */}
       <motion.div className="absolute inset-0 -z-10" style={{ y }}>
-        <Image
+        {/* <Image
           src="/images/placeholder-2.png" // <-- replace with your actual image path
           alt="Hero background"
           fill
           className="object-cover"
           priority
+        /> */}
+        <Novatrix
+          color={NOVATRIX_COLOR}
+          amplitude={0.5}
+          mouseReact={true}
+          speed={1.0}
         />
         {/* Dark overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/50" />
@@ -71,15 +79,15 @@ const HeroSection = () => {
               >
                 Hire Me
               </Link>
-              <Link
-                href="/"
-                download="/Resume.pdf"
+              <a
+                href="/Resume.pdf"
+                download="Resume.pdf"
                 className="px-1 inline-block py-1 w-full sm:w-fit rounded-full mr-4 bg-[#121212] hover:bg-[#f3f3f3] text-white hover:text-black font-medium mt-3"
               >
                 <span className="block bg-transparent px-5 py-2">
                   Download CV
                 </span>
-              </Link>
+              </a>
             </div>
           </motion.div>
           {/* The commented image circle can be uncommented if needed */}

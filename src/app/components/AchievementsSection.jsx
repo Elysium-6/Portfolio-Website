@@ -19,6 +19,10 @@ const achievementsList = [
     metric: "Years",
     value: "4",
   },
+  {
+    metric: "Time Hackathon Finalist",
+    value: "5",
+  },
 ];
 
 const AchievementsSection = () => {
