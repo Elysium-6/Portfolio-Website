@@ -11,18 +11,20 @@ const projectsData = [
     id: 1,
     title: "React Portfolio Website",
     description: "My portfolio website built with React and Tailwind CSS.",
+    detailedDescription: "A responsive portfolio website showcasing my skills and projects built with React and Tailwind CSS.",
     image: "/images/projects/PortfolioWebsite_display.png",
     tag: ["All", "Web", "UI/UX"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/Elysium-6/Portfolio-Website",
     previewUrl: "/",
   },
   {
     id: 2,
     title: "ScamSensei",
     description: "A scam detection and prevention application built with React and Firebase. Powered by the DeepSeek API, it analyses user responses to better train them to identify scams and phishing attempts.",
+    detailedDescription: "A scam detection and prevention application built with React, Python and Firebase. Consisting of four components, the frontend, the database and the two AI agents, implemented in Python, which provide the chat-based and phone call-based training sessions. The primary stack is coded in React Typescript with the database hosted on Firebase. The chat and call agents are powered by DeepSeek and Twilio respectively.",
     image: "/images/projects/ScamSensei_display.png",
     tag: ["All", "Mobile", "UI/UX", "Prompt Engineering"],
-    gitUrl: "/",
+    gitUrl: "",
     previewUrl: "/",
   },
   // {
@@ -52,15 +54,15 @@ const projectsData = [
   //   gitUrl: "/",
   //   previewUrl: "/",
   // },
-  // {
-  //   id: 6,
-  //   title: "Puzzle Bots",
-  //   description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
-  //   image: "/images/projects/6.png",
-  //   tag: ["All", "AI Agents", "Computer Vision", "Machine Learning", "UI/UX"],
-  //   gitUrl: "/",
-  //   previewUrl: "/",
-  // },
+  {
+    id: 6,
+    title: "Puzzle Bots",
+    description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
+    image: "/images/projects/PuzzleBots_display.png",
+    tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
   // {
   //   id: 7,
   //   title: "Kingdoms of Chess",
@@ -167,6 +169,7 @@ const ProjectsSection = () => {
               key={project.id}
               title={project.title}
               description={project.description}
+              detailedDescription={project.detailedDescription}
               imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
