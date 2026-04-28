@@ -56,9 +56,9 @@ const projectsData = [
   // },
   {
     id: 6,
-    title: "Puzzle Bots",
+    title: "Tinker Noggins",
     description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
-    image: "/images/projects/PuzzleBots_display.png",
+    image: "/images/projects/TinkerNoggins_display.png",
     tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
     gitUrl: "/",
     previewUrl: "/",
