@@ -58,6 +58,7 @@ const projectsData = [
     id: 6,
     title: "Tinker Noggins",
     description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
+    detailedDescription: "Introducing the Tinker Noggins:\nWolly - Solves Wordle by appliying information theory to an existing list of words and filtering based on each guess. Uses Selenium to interact with the web game.",
     image: "/images/projects/TinkerNoggins_display.png",
     tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
     gitUrl: "/",
@@ -72,6 +73,15 @@ const projectsData = [
   //   gitUrl: "/",
   //   previewUrl: "/",
   // },
+  {
+    id: 8,
+    title: "Ledger",
+    description: "A simple personal finance tracker application run in the terminal. Built with Textual in Python.",
+    image: "/images/projects/Ledger_display.png",
+    tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
 ];
 
 const ProjectsSection = () => {
