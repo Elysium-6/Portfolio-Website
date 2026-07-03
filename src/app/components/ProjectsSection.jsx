@@ -1,10 +1,22 @@
 "use client";
 import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
-const categories = ["All", "Web", "Mobile", "UI/UX", "Fullstack", "Prompt Engineering", "Machine Learning", "Computer Vision", "Game", "AI Agents", "Unity", "Unreal Engine"];
+const categoryGroups = [
+  {
+    title: "Platform",
+    tags: ["Web", "Mobile", "Terminal"],
+  },
+  {
+    title: "Game Engines",
+    tags: ["Godot", "Unity", "Unreal Engine"],
+  },
+  {
+    title: "Domain",
+    tags: ["UI/UX", "Fullstack", "Prompt Engineering", "Machine Learning", "Computer Vision", "AI Agents", "Ecommerce"],
+  },
+];
 
 const projectsData = [
   {
@@ -78,23 +90,40 @@ const projectsData = [
     title: "Ledger",
     description: "A simple personal finance tracker application run in the terminal. Built with Textual in Python.",
     image: "/images/projects/Ledger_display.png",
-    tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
+    tag: ["All", "Ecommerce", "Terminal", "UI/UX"],
     gitUrl: "/",
     previewUrl: "/",
+  },
+  {
+    id: 9,
+    title: "TrickyTactics",
+    description: "A strategy-based autobattler game built in Godot. Players build their own teams of unique units over the course of several rounds and compete in different arenas.",
+    image: "/images/projects/TrickyTactics_display.png",
+    tag: ["All", "Godot", "Game"],
+    gitUrl: "/",
+    previewUrl: "/",
+    community: true,
   },
 ];
 
 const ProjectsSection = () => {
-  const [tag, setTag] = useState("All");
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleTagChange = (newTag) => {
-    setTag(newTag);
+  const toggleTag = (tagName) => {
+    setSelectedTags((currentTags) =>
+      currentTags.includes(tagName)
+        ? currentTags.filter((item) => item !== tagName)
+        : [...currentTags, tagName]
+    );
   };
 
+  const clearFilters = () => setSelectedTags([]);
+
   const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
+    selectedTags.every((filter) => project.tag.includes(filter))
   );
 
   const cardVariants = {
@@ -103,69 +132,99 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
-      </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="AI Agents"
-          isSelected={tag === "AI Agents"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Fullstack"
-          isSelected={tag === "Fullstack"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Game"
-          isSelected={tag === "Game"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Machine Learning"
-          isSelected={tag === "Machine Learning"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Prompt Engineering"
-          isSelected={tag === "Prompt Engineering"}
-        />
+    <section id="projects" className="px-4 w-full">
+      <div className="mx-auto mb-8 w-full max-w-full md:mb-12">
+        <h2 className="text-3xl font-bold text-white text-center md:text-4xl">
+          My Projects
+        </h2>
+        <div className="flex justify-center flex-col items-start gap-4 w-full">
+          <div className="w-full flex flex-wrap items-center justify-start gap-3">
+            <button
+              type="button"
+              className="inline-flex items-center justify-between gap-2 rounded-full border border-white bg-[#121212] px-4 py-2 text-sm font-medium text-white transition hover:border-[#121212] hover:bg-white hover:text-[#121212]"
+              onClick={() => setIsFilterOpen((prev) => !prev)}
+            >
+              <span className="truncate">Filters: {selectedTags.length > 0 ? selectedTags.length + " active" : "None"}</span>
+              <span
+                className={`text-sm transition-transform duration-200 ${
+                  isFilterOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                ▼
+              </span>
+            </button>
+            {selectedTags.length > 0 && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="rounded-full border border-white bg-[#121212] px-3 py-2 text-sm text-white transition hover:border-[#121212] hover:bg-white hover:text-[#121212]"
+              >
+                Clear all
+              </button>
+            )}
+          </div>
+        </div>
+
+        <AnimatePresence initial={false}>
+          {isFilterOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="w-full max-w-5xl rounded-3xl border border-white bg-[#121212] p-4 shadow-lg shadow-black/25"
+            >
+              <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
+                    Filter projects
+                  </p>
+                  <p className="text-xs text-white">
+                    Select one or more tags to narrow results.
+                  </p>
+                </div>
+                <span className="rounded-full border border-white bg-[#121212] px-3 py-1 text-xs text-white">
+                  {selectedTags.length} selected
+                </span>
+              </div>
+
+              <div className="border-t border-white"></div>
+
+              <div className="mt-4 space-y-6">
+                {categoryGroups.map((group) => (
+                  <div key={group.title} className="space-y-3">
+                    <p className="text-xs uppercase tracking-[0.3em] text-white/70">
+                      {group.title}
+                    </p>
+                    <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+                      {group.tags.map((category) => {
+                        const active = selectedTags.includes(category);
+                        return (
+                          <button
+                            key={category}
+                            type="button"
+                            onClick={() => toggleTag(category)}
+                            className={`rounded-full border px-3 py-2 text-sm font-medium text-center transition ${
+                              active
+                                ? "border-white bg-white text-[#121212]"
+                                : "border-white bg-[#121212] text-white hover:border-white hover:bg-white/10"
+                            }`}
+                          >
+                            {category}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 border-t border-white"></div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="UI/UX"
-          isSelected={tag === "UI/UX"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Unity"
-          isSelected={tag === "Unity"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Unreal Engine"
-          isSelected={tag === "Unreal Engine"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-      </div>
+
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
         {filteredProjects.map((project, index) => (
           <motion.li
@@ -183,6 +242,7 @@ const ProjectsSection = () => {
               imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
+              community={project.community}
             />
           </motion.li>
         ))}

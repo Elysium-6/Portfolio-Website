@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const ProjectCard = ({ imgUrl, title, description, detailedDescription, gitUrl, previewUrl }) => {
+const ProjectCard = ({ imgUrl, title, description, detailedDescription, gitUrl, previewUrl, community }) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   return (
@@ -29,7 +29,14 @@ const ProjectCard = ({ imgUrl, title, description, detailedDescription, gitUrl, 
         </div>
       </div>
       <div className="text-white rounded-b-xl mt-3 bg-[#181818]py-6 px-4">
-        <h5 className="text-xl font-semibold mb-2">{title}</h5>
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <h5 className="text-xl font-semibold">{title}</h5>
+          {community && (
+            <span className="rounded-full border border-red-500 bg-red-500/15 px-2 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-red-300">
+              Community
+            </span>
+          )}
+        </div>
         <p className="text-[#ADB7BE]">{description}</p>
       </div>
 
