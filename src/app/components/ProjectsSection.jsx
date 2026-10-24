@@ -22,22 +22,55 @@ const projectsData = [
   {
     id: 1,
     title: "React Portfolio Website",
+    type: "Website",
     description: "My portfolio website built with React and Tailwind CSS.",
     detailedDescription: "A responsive portfolio website showcasing my skills and projects built with React and Tailwind CSS.",
     image: "/images/projects/PortfolioWebsite_display.png",
     tag: ["All", "Web", "UI/UX"],
     gitUrl: "https://github.com/Elysium-6/Portfolio-Website",
     previewUrl: "/",
+    videoUrl: "",
   },
   {
     id: 2,
     title: "ScamSensei",
+    type: "Mobile Application",
     description: "A scam detection and prevention application built with React and Firebase. Powered by the DeepSeek API, it analyses user responses to better train them to identify scams and phishing attempts.",
     detailedDescription: "A scam detection and prevention application built with React, Python and Firebase. Consisting of four components, the frontend, the database and the two AI agents, implemented in Python, which provide the chat-based and phone call-based training sessions. The primary stack is coded in React Typescript with the database hosted on Firebase. The chat and call agents are powered by DeepSeek and Twilio respectively.",
+    details: {
+      sections: [
+        {
+          type: "text",
+          title: "Problem",
+          body: "Many users are not confident recognising scams or phishing attempts, especially when a message feels urgent or personalised. These attacks often exploit human hesitation rather than technical vulnerability.",
+        },
+        {
+          type: "text",
+          title: "Solution",
+          body: "ScamSensei turns awareness into practice by giving users realistic scam scenarios and immediate feedback on how to respond. The app teaches users to slow down, verify the signal, and recognise manipulation tactics before they become victims.",
+        },
+        {
+          type: "text",
+          title: "Implementation",
+          body: "The mobile frontend was built with React and TypeScript, with Firebase used for authentication and data storage. I also implemented two AI agents in Python: one for chat-based scam coaching and another for phone-call style training simulations powered by Twilio and DeepSeek APIs.",
+        },
+        {
+          type: "list",
+          title: "Key features",
+          items: [
+            "Realistic scam training scenarios",
+            "AI-powered chat guidance",
+            "Phone-call simulation for practical learning",
+            "Feedback loop to strengthen user judgement",
+          ],
+        },
+      ],
+    },
     image: "/images/projects/ScamSensei_display.png",
     tag: ["All", "Mobile", "UI/UX", "Prompt Engineering"],
     gitUrl: "",
     previewUrl: "/",
+    videoUrl: "",
   },
   // {
   //   id: 3,
@@ -51,11 +84,42 @@ const projectsData = [
   {
     id: 4,
     title: "Career Guru",
+    type: "Mobile Application",
     description: "An application that helps users ages 16-20 navigate their career paths by providing personalized advice and resources.",
+    details: {
+      sections: [
+        {
+          type: "text",
+          title: "Problem",
+          body: "Young people often struggle to make career decisions because they lack clear guidance, personalised pathways, and tools to evaluate their strengths against different opportunities.",
+        },
+        {
+          type: "text",
+          title: "Solution",
+          body: "Career Guru helps users understand their interests, evaluate suitable routes, and access targeted resources based on their aspirations and current stage of career exploration.",
+        },
+        {
+          type: "text",
+          title: "Implementation",
+          body: "The app was designed as a mobile-first experience with a clear, accessible interface. It uses AI-assisted recommendations to tailor suggestions while keeping the experience simple enough for younger users to engage with easily.",
+        },
+        {
+          type: "list",
+          title: "Key features",
+          items: [
+            "Personalized career guidance",
+            "Skill and interest matching",
+            "Clear educational and career pathways",
+            "Mobile-first UX for younger users",
+          ],
+        },
+      ],
+    },
     image: "/images/projects/CareerGuru_display.png",
     tag: ["All", "Mobile", "UI/UX", "Prompt Engineering"],
     gitUrl: "/",
     previewUrl: "/",
+    videoUrl: "",
   },
   // {
   //   id: 5,
@@ -75,6 +139,7 @@ const projectsData = [
     tag: ["All", "AI Agents", "Computer Vision", "UI/UX"],
     gitUrl: "/",
     previewUrl: "/",
+    videoUrl: "",
   },
   // {
   //   id: 7,
@@ -88,20 +153,24 @@ const projectsData = [
   {
     id: 8,
     title: "Ledger",
+    type: "TUI Application",
     description: "A simple personal finance tracker application run in the terminal. Built with Textual in Python.",
     image: "/images/projects/Ledger_display.png",
     tag: ["All", "Ecommerce", "Terminal", "UI/UX"],
     gitUrl: "/",
     previewUrl: "/",
+    videoUrl: "",
   },
   {
     id: 9,
     title: "TrickyTactics",
+    type: "Video Game",
     description: "A strategy-based autobattler game built in Godot. Players build their own teams of unique units over the course of several rounds and compete in different arenas.",
     image: "/images/projects/TrickyTactics_display.png",
     tag: ["All", "Godot", "Game"],
     gitUrl: "/",
     previewUrl: "/",
+    videoUrl: "",
     community: true,
   },
 ];
@@ -237,11 +306,15 @@ const ProjectsSection = () => {
             <ProjectCard
               key={project.id}
               title={project.title}
+              type={project.type ? project.type : "Project"}
               description={project.description}
               detailedDescription={project.detailedDescription}
+              details={project.details}
+              tags={project.tag}
               imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
+              videoUrl={project.videoUrl}
               community={project.community}
             />
           </motion.li>

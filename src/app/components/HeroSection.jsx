@@ -1,47 +1,14 @@
 "use client";
-import React, { useRef } from "react";
-import Image from "next/image";
+import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import Novatrix from "../ui/novatrix-background";
 
 const HeroSection = () => {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"], // animation runs while section enters/exits viewport
-  });
-  const NOVATRIX_COLOR = [1, 1, 1];
-
-  // Map scroll progress to vertical movement of the background
-  // Start position: -20% (slightly above), end position: 20% (slightly below)
-  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
-
   return (
     <section
-      ref={sectionRef}
-      className="relative overflow-hidden lg:py-16 bg-transparent min-h-[550px] sm:min-h-[400px] lg:min-h-[700px] flex items-center"
+      className="relative z-10 lg:py-16 bg-transparent min-h-[550px] sm:min-h-[400px] lg:min-h-[700px] flex items-center"
     >
-      {/* Parallax Background Image */}
-      <motion.div className="absolute inset-0 -z-10" style={{ y }}>
-        {/* <Image
-          src="/images/placeholder-2.png" // <-- replace with your actual image path
-          alt="Hero background"
-          fill
-          className="object-cover"
-          priority
-        /> */}
-        <Novatrix
-          color={NOVATRIX_COLOR}
-          amplitude={0.5}
-          mouseReact={true}
-          speed={1.0}
-        />
-        {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-black/50" />
-      </motion.div>
-
       <div className="relative z-10 container mx-auto px-12 py-4 flex items-center">
         <div className="">
           <motion.div
