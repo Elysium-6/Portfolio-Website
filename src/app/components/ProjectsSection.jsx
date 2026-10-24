@@ -18,9 +18,19 @@ const categoryGroups = [
   },
 ];
 
+const projectIdByName = {
+  "React Portfolio Website": 100,
+  "ScamSensei": 2,
+  "Career Guru": 3,
+  "Tinker Noggins": 5,
+  "Ledger": 6,
+  "TrickyTactics": 1,
+  "ConceptBranch": 4,
+};
+
 const projectsData = [
   {
-    id: 1,
+    id: projectIdByName["React Portfolio Website"],
     title: "React Portfolio Website",
     type: "Website",
     description: "My portfolio website built with React and Tailwind CSS.",
@@ -32,7 +42,7 @@ const projectsData = [
     videoUrl: "",
   },
   {
-    id: 2,
+    id: projectIdByName["ScamSensei"],
     title: "ScamSensei",
     type: "Mobile Application",
     description: "A scam detection and prevention application built with React and Firebase. Powered by the DeepSeek API, it analyses user responses to better train them to identify scams and phishing attempts.",
@@ -82,7 +92,7 @@ const projectsData = [
   //   previewUrl: "/",
   // },
   {
-    id: 4,
+    id: projectIdByName["Career Guru"],
     title: "Career Guru",
     type: "Mobile Application",
     description: "An application that helps users ages 16-20 navigate their career paths by providing personalized advice and resources.",
@@ -131,7 +141,7 @@ const projectsData = [
   //   previewUrl: "/",
   // },
   {
-    id: 6,
+    id: projectIdByName["Tinker Noggins"],
     title: "Tinker Noggins",
     description: "A series of AI Agents that automatically solve popular online puzzles games such as Wordle, Zip and Mini Sudoku. Built with Python using Selenium and Tkinter",
     detailedDescription: "Introducing the Tinker Noggins:\nWolly - Solves Wordle by appliying information theory to an existing list of words and filtering based on each guess. Uses Selenium to interact with the web game.",
@@ -151,7 +161,7 @@ const projectsData = [
   //   previewUrl: "/",
   // },
   {
-    id: 8,
+    id: projectIdByName["Ledger"],
     title: "Ledger",
     type: "TUI Application",
     description: "A simple personal finance tracker application run in the terminal. Built with Textual in Python.",
@@ -162,16 +172,56 @@ const projectsData = [
     videoUrl: "",
   },
   {
-    id: 9,
+    id: projectIdByName["TrickyTactics"],
     title: "TrickyTactics",
     type: "Video Game",
     description: "A strategy-based autobattler game built in Godot. Players build their own teams of unique units over the course of several rounds and compete in different arenas.",
+    detailedDescription: "TrickyTactics is a strategy-based autobattler game built in Godot by a global indie team. Players build their own teams of unique units over the course of several rounds and compete in different arenas. The game features a variety of units with different abilities, as well as a range of items and upgrades that can be used to enhance gameplay.",
     image: "/images/projects/TrickyTactics_display.png",
     tag: ["All", "Godot", "Game"],
     gitUrl: "/",
     previewUrl: "/",
     videoUrl: "",
     community: true,
+  },
+  {
+    id: projectIdByName["ConceptBranch"],
+    title: "ConceptBranch",
+    type: "Web Application",
+    description: "A web application for managing and visualizing conceptual branches in a collaborative environment.",
+    details: {
+      sections: [
+        {
+          type: "text",
+          title: "Problem",
+          body: "Modern learners are drowning in information. In today's world, everything from AI to finance, politics to sports, “what's current” changes weekly. Most tools either give shallow overview or overwhelm users with poorly structured walls of text. The question we wanted to answer was: can keeping up with research feel as fun as scrolling RedNote?",
+        },
+        {
+          type: "text",
+          title: "Solution",
+          body: "The answer is ConceptBranch, a web application which delivers RedNote-style, bite-sized visual paper intros and recommends them based on each learner's past clicks which makes discovery more engaging and personal. It creates a living map of knowledge that evolves with the learner and the world, delivering information in a far more engaging and interactive manner. Unlike one-directional feeds that cluster similar content, ConceptBranch offers a tree-shaped exploration map: learners can branch into any concept direction, jump across related ideas, and keep expanding along multiple threads as their knowledge evolves.",
+        },
+        {
+          type: "text",
+          title: "Implementation",
+          body: "The web app is designed as a single-page application. It processes the user's prompt through our own engineered prompt then scrapes the web for relevant recent information and produces an output through an RAG pipeline. The information is then parsed into nodes and given to the frontend to present as interactive idea nodes.",
+        },
+        {
+          type: "list",
+          title: "Key features",
+          items: [
+            "Personalized and interactive knowledge map",
+            "Guided topic exploration",
+          ],
+        },
+      ],
+    },
+    image: "/images/projects/ConceptBranch_display.png",
+    tag: ["All", "Web", "UI/UX", "Fullstack", "Prompt Engineering"],
+    gitUrl: "/",
+    previewUrl: "/",
+    videoUrl: "",
+    community: false,
   },
 ];
 
@@ -191,9 +241,9 @@ const ProjectsSection = () => {
 
   const clearFilters = () => setSelectedTags([]);
 
-  const filteredProjects = projectsData.filter((project) =>
-    selectedTags.every((filter) => project.tag.includes(filter))
-  );
+  const filteredProjects = [...projectsData]
+    .sort((a, b) => Number(a.id) - Number(b.id))
+    .filter((project) => selectedTags.every((filter) => project.tag.includes(filter)));
 
   const cardVariants = {
     initial: { y: 50, opacity: 0 },
